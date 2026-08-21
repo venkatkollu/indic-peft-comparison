@@ -1,0 +1,7 @@
+language,budget_before,budget_after,ranking_before,ranking_after
+hi,100,500,dora > lora > ia3,ia3 > lora > dora
+hi,2000,20000,ia3 > lora > dora,ia3 > dora > lora
+te,50,100,dora > lora > ia3,ia3 > dora > lora
+te,100,500,ia3 > dora > lora,ia3 > lora > dora
+te,500,1000,ia3 > lora > dora,ia3 > dora > lora
+te,2000,20000,ia3 > dora > lora,lora > dora > ia3

@@ -1,0 +1,25 @@
+{
+  "auto_mapping": null,
+  "base_model_name_or_path": "xlm-roberta-base",
+  "exclude_modules": null,
+  "fan_in_fan_out": false,
+  "feedforward_modules": [
+    "output.dense"
+  ],
+  "inference_mode": true,
+  "init_ia3_weights": true,
+  "modules_to_save": [
+    "classifier",
+    "classifier",
+    "score"
+  ],
+  "peft_type": "IA3",
+  "peft_version": "0.19.1",
+  "revision": null,
+  "target_modules": [
+    "output.dense",
+    "key",
+    "value"
+  ],
+  "task_type": "SEQ_CLS"
+}

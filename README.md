@@ -1,94 +1,101 @@
-# Does PEFT Method Ranking Hold Across Script Families?
+# PEFT Ranking Across Indic Script Families
 
-A data-efficiency study comparing LoRA, DoRA, and IA³ on Hindi and Telugu NLI, using
-XLM-RoBERTa-base and the IndicXNLI benchmark.
+> **Parameter-efficient fine-tuning comparison of LoRA, DoRA, and IA³ for
+> 3-class IndicXNLI natural-language inference in Hindi and Telugu using
+> XLM-RoBERTa-base.**
 
-## Research question
+## Highlights
 
-Prior PEFT comparison studies (Frontiers in Big Data 2025; PROPOR 2026) evaluate
-LoRA/DoRA/IA³ at a single fixed dataset size, on Latin-script languages only. This
-project asks two things no prior study has jointly tested:
+| Budget | Hindi winner | Telugu winner |
+|-------:|-------------|--------------|
+|     50 | DoRA        | DoRA         |
+|    100 | DoRA        | IA³          |
+|    500 | IA³         | IA³          |
+|  1,000 | IA³         | IA³          |
+|  2,000 | IA³         | IA³          |
+| 20,000 | IA³         | LoRA         |
 
-1. Does the relative ranking of these three PEFT methods hold across different
-   annotation budgets (50 to 20,000 examples)?
-2. Does that ranking hold across script families — Hindi (Devanagari, Indo-Aryan)
-   vs. Telugu (Telugu script, Dravidian)?
+*Validation-set results (mean macro-F1 across 3 seeds). See
+[validated-results.md](docs/validated-results.md) for supported claims and
+known limitations.*
 
-## Repository structure
+## Experimental scope
+
+- **Methods:** LoRA, DoRA, IA³
+- **Languages:** Hindi (`hi`) and Telugu (`te`)
+- **Training budgets:** 50 · 100 · 500 · 1,000 · 2,000 · 20,000 examples
+- **Seeds:** 42, 123, 456
+- **Total runs:** 108 validation-set experiments
+
+## Getting started
+
+```bash
+# Clone the repository
+git clone https://github.com/venkatkollu/indic-peft-comparison.git
+cd indic-peft-comparison
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+The notebooks were executed on Kaggle and contain Kaggle-specific input paths.
+Download IndicXNLI and recreate the processed subsets with notebooks 01–02
+before rerunning notebooks 04–06.
+
+## Repository layout
 
 ```
-notebooks/
-  00-environment-setup.ipynb        Environment + GPU verification, library installs
-  01-dataset-validation.ipynb       IndicXNLI download, EDA, split-overlap checks
-  02-data-preprocessing.ipynb       Nested stratified budget subsets (50-20,000), saved as parquet
-  03-infrastructure-validation.ipynb  PEFT config checks, tokenizer/truncation analysis, dry run
-  04-hyperparameter-search.ipynb    Per-method LR search, pooled across both languages
-  05-full-experiment-sweep.ipynb    Full 108-run sweep (3 methods x 2 languages x 6 budgets x 3 seeds)
-  06-results-analysis.ipynb         Aggregation, 95% CIs, learning curves, crossover detection
+notebooks/                         Primary reproducible pipeline (00–06)
+  00-environment-setup.ipynb
+  01-dataset-validation.ipynb
+  02-data-preprocessingv2.ipynb
+  03-experimental-infrastructure-validation.ipynb
+  04-hyperparameter-search.ipynb
+  05-full-experiment-sweep.ipynb
+  06-results-analysis.ipynb
+  07-test-set-evaluation.ipynb      Held-out evaluation of the saved 108 models
 
 results/
-  experiment_results.csv    Raw per-run results (108 rows)
-  summary_with_ci.csv       Mean/std/95% CI per (method, language, budget)
-  ranking_table.csv         Best-performing method per (language, budget)
-  compute_efficiency.csv    Trainable params / peak GPU memory / training time per method
-  collapsed_runs.csv        Runs that failed to learn (see Limitations below)
-  learning_curves.png       F1 vs. budget, one panel per language, with 95% CI bands
+  04-hyperparameter-search/        LR sweep and selected method-level LRs
+  05-full-experiment-sweep/        108-run CSV, JSONL log, and adapter configs
+  06-results-analysis/             Aggregates, rankings, plot, and collapse list
 
 docs/
-  methodology-notes.md      Design decisions, deviations from the original proposal, and why
+  validated-results.md             Source-of-truth interpretation of results 00–06
+  PROJECT_STATUS.md                Audit log and continuation notes
+  report-materials/                Earlier report-writing materials; verify against
+                                   validated-results.md before reusing
+
+archive/exploratory-hybrid/        Post-06 hybrid work; excluded from the primary study
+archive/legacy-analysis/           Original notebook 06 preserved for traceability
 ```
 
-## Setup
+## Primary result files
 
-Each notebook was developed and run on Kaggle (GPU: Tesla T4 or P100, 16GB).
-Notebooks 02, 04, and 05 depend on each other's committed outputs being attached
-as Kaggle "Notebook" inputs, in this order: `02 -> 04 -> 05 -> 06`.
+| File | Description |
+|------|-------------|
+| `results/05-full-experiment-sweep/experiment_results.csv` | All 108 runs |
+| `results/06-results-analysis/summary_with_ci.csv` | Seed means, SDs, corrected 3-seed *t* intervals |
+| `results/06-results-analysis/ranking_table.csv` | Highest mean macro-F1 per cell |
+| `results/06-results-analysis/collapsed_runs.csv` | 24 runs at/near chance-accuracy baseline (~0.333) |
+| `results/06-results-analysis/learning_curves.png` | Learning curve plot |
 
-Key libraries: `transformers`, `peft`, `datasets`, `accelerate`, `torch`.
+## Adapter weights
 
-## Headline finding
+The trained PEFT adapter weights (`.safetensors`, `.pt`) are **not** committed
+to this repository to keep the clone size small. Adapter configuration files
+(`adapter_config.json`, `adapter_info.json`) are included. The full adapter
+weights are available on the HuggingFace Hub.
 
-**IA³ outperforms LoRA and DoRA at every budget from 500 samples upward, in both
-Hindi and Telugu** -- a consistent crossover, not noise, since it holds across both
-script families. LoRA and DoRA track each other closely throughout and are nearly
-indistinguishable in final accuracy, despite DoRA's added computational cost.
+## Reproducibility notes
 
-| Budget | Hindi best | Telugu best |
-|---|---|---|
-| 500    | IA3 | IA3 |
-| 1000   | IA3 | IA3 |
-| 2000   | IA3 | IA3 |
-| 20000  | IA3 | IA3 |
+- The notebooks were executed on Kaggle with Kaggle-specific input paths.
+- The raw and processed datasets are not committed here. Download IndicXNLI and
+  recreate the processed subsets with notebooks 01–02 before rerunning
+  notebooks 04–06.
+- Notebook 04 selects learning rates using validation data, and notebook 05
+  reports validation performance on the same split.
 
-IA³ also shows a lower compute footprint in trainable parameters (657K vs. LoRA's
-888K and DoRA's 906K) but a higher wall-clock training time in this implementation,
-and a higher failure rate at the smallest budgets (see Limitations).
+## License
 
-Full numbers: `results/summary_with_ci.csv` and `results/ranking_table.csv`.
-Plots: `results/learning_curves.png`.
-
-## Limitations (documented, not hidden)
-
-- **"Full dataset" budget capped at 20,000** samples (of ~392,702 available),
-  as a compute-constrained trade-off. This deviates from the literal wording of
-  the original proposal ("the full dataset") and should be read as "a
-  high-resource budget," not the complete training set.
-- **13 of 108 runs (12%) failed to learn** (accuracy stuck at random chance,
-  0.333). These cluster heavily in IA3 at the smallest budgets (50-100 samples,
-  9 of 13 cases) and are documented in `results/collapsed_runs.csv` rather than
-  discarded. This itself may be a finding: IA3's much higher learning rate
-  (5e-3, vs. 1e-4 for LoRA/DoRA, chosen by a pooled hyperparameter search)
-  appears to trade some small-budget stability for a stronger performance
-  ceiling at moderate-to-large budgets.
-- Learning rates were searched once per method, pooled across both languages
-  (not per-language), to keep language a clean, uncontaminated variable in the
-  cross-script comparison.
-- See `docs/methodology-notes.md` for a full account of debugging decisions,
-  including a classifier-head-freezing bug found and fixed during development.
-
-## Status
-
-Notebooks 00-06 complete. Remaining work: full write-up (Results/Discussion
-sections), comparison against the Frontiers (2025) and PROPOR (2026) anchor
-studies' reported rankings, and submission formatting for an ACL/EMNLP-style
-venue.
+This project is licensed under the [MIT License](LICENSE).
