@@ -1,7 +1,0 @@
-method,language,budget,seed,lr,epochs,warmup_steps,total_steps,accuracy,macro_f1,trainable_params,peak_gpu_memory_gb,training_time_sec
-ia3_lora_sequential,te,500,42,0.0003,10,32,320,0.414859,0.409064,887811,1.1341,72.71
-ia3_lora_sequential,te,500,123,0.0003,10,32,320,0.442972,0.432336,887811,1.1347,71.74
-ia3_lora_sequential,te,500,456,0.0003,10,32,320,0.416064,0.403975,887811,1.1347,71.69
-ia3_lora_sequential,te,2000,42,0.0003,5,62,625,0.523695,0.5185,887811,1.1347,143.13
-ia3_lora_sequential,te,2000,123,0.0003,5,62,625,0.513655,0.502344,887811,1.1347,143.03
-ia3_lora_sequential,te,2000,456,0.0003,5,62,625,0.529317,0.527826,887811,1.1347,142.89

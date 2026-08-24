@@ -1,7 +1,8 @@
-> **Status notice (2026-08-18):** This is an earlier draft and contains values
-> and conclusions that do not match the stored primary results. In particular,
-> it overstates IA³'s consistency and undercounts collapsed runs. Do not use it
-> as the final Results/Discussion section; see `../validated-results.md`.
+> **Status notice (2026-08-24):** This is an earlier draft and contains values
+> and conclusions that do not match the current validated primary results. In
+> particular, it overstates IA³'s consistency and undercounts collapsed runs.
+> Do not use it as the final Results/Discussion section; see
+> `../validated-results.md` and the files under `results/`.
 
 Results
 

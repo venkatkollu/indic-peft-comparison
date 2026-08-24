@@ -1,8 +1,9 @@
 # Corrected analysis outputs
 
-`summary_with_ci.csv` now uses two-sided 95% t intervals with three seeds
-(`df=2`, `t*=4.302652729`). These intervals quantify seed variation and must
-not be treated as pairwise significance tests.
+This directory contains the validated primary-study summaries used for the final
+analysis. `summary_with_ci.csv` uses two-sided 95% t intervals with three seeds
+(`df=2`, `t*=4.302652729`). These intervals quantify seed variation and must not
+be treated as pairwise significance tests.
 
 `rank_order_changes.csv` records descriptive changes in mean-method order. It
 does not establish statistical crossovers.
@@ -11,7 +12,7 @@ does not establish statistical crossovers.
 equivalent constant-class outcomes when the validation labels are not perfectly
 balanced.
 
-The old normal-interval plot and original analysis notebook are preserved under
-`archive/legacy-analysis/`. Run `notebooks/06-results-analysis.ipynb` in an
-environment with the dependencies in `requirements.txt` to generate the
-corrected learning-curve plot.
+The main notebook that produced these outputs is `notebooks/06-results-analysis.ipynb`.
+Use the environment in `requirements.txt` and the source files under `results/` to
+reproduce or extend the analysis. The current interpretation is governed by
+`docs/validated-results.md`.

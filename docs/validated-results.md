@@ -50,8 +50,11 @@ wins every budget from 500 onward in both languages.
 - The epoch schedule varies by budget, so training budget and the number of
   optimizer updates are not fully isolated.
 
-## Excluded work
+## Follow-up work
 
-Post-06 IA³+LoRA hybrid experiments live in `archive/exploratory-hybrid/`.
-They use changing protocols and do not establish a controlled hybrid
-comparison. They are intentionally excluded from this primary-results summary.
+The hybrid IA³+LoRA experiments are kept in the active project tree under
+`notebooks/08-hybrid-formal.ipynb`, `notebooks/09-hybrid-test-evaluation.ipynb`,
+and the corresponding result folders under `results/08 — Hybrid IA3+LoRA/` and
+`results/09 — Hybrid test-set eval/`. They are follow-on analyses and should be
+read as supplemental work rather than as replacements for the validated primary
+study.

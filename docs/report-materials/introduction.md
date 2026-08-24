@@ -1,3 +1,8 @@
+> **Status notice (2026-08-24):** This is an earlier draft written before the
+> final validated results and the current repo layout were adopted. It should not
+> be used as the final report text. See `../validated-results.md` and the current
+> `README.md` for the authoritative findings and file structure.
+
 Introduction
 
 Parameter-efficient fine-tuning (PEFT) methods — LoRA (Hu et al., 2021), its variant DoRA (Liu et al., 2024), and IA³ (Liu et al., 2022) — have become the default approach for adapting large pretrained language models to downstream tasks under limited compute and memory budgets. Each modifies a frozen backbone differently: LoRA injects low-rank additive updates into attention weight matrices; DoRA decomposes those updates into separate magnitude and direction components, aiming to more closely approximate full fine-tuning's learning dynamics; IA³ instead learns a small number of per-layer rescaling vectors, updating far fewer parameters than either LoRA variant. Comparative studies of these methods typically report a fixed ranking — usually favoring LoRA or DoRA — but this ranking is generally established under a single, specific experimental condition: one dataset size, one language, one script.

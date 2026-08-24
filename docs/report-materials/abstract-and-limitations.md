@@ -1,6 +1,7 @@
-> **Status notice (2026-08-18):** This is an earlier draft. Its universal IA³
-> ranking claim and its 13-run collapse count conflict with the stored primary
-> results. Do not use it as the final abstract; see `../validated-results.md`.
+> **Status notice (2026-08-24):** This is an earlier draft. Its universal IA³
+> ranking claim and its 13-run collapse count conflict with the current validated
+> primary results. Do not use it as the final abstract; see
+> `../validated-results.md` and the files under `results/`.
 
 Abstract
 

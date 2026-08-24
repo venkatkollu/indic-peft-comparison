@@ -7,14 +7,20 @@ without repeating the audit.
 
 ## Current project scope
 
-The maintained primary study ends at notebook `06-results-analysis.ipynb`:
+The maintained project is organized around the full notebook sequence in
+`notebooks/`:
 
 `00` environment → `01` dataset validation → `02` preprocessing → `03`
 infrastructure checks → `04` pooled LR search → `05` 108-run primary sweep →
-`06` corrected analysis.
+`06` corrected analysis → `07` held-out evaluation → `08` hybrid formal study →
+`09` hybrid test evaluation → `10` final comparison.
 
-The post-06 hybrid IA³+LoRA experiments are exploratory and are stored under
-`archive/exploratory-hybrid/`. They are excluded from the primary conclusions.
+The hybrid IA³+LoRA work is retained in the main project structure under
+`notebooks/08-hybrid-formal.ipynb`, `notebooks/09-hybrid-test-evaluation.ipynb`,
+and the corresponding `results/08 — Hybrid IA3+LoRA/` and
+`results/09 — Hybrid test-set eval/` folders. It is not archived separately and
+is treated as a relevant follow-up study rather than a replacement for the
+primary conclusions.
 
 ## Work completed
 
@@ -26,7 +32,8 @@ The post-06 hybrid IA³+LoRA experiments are exploratory and are stored under
   - primary notebooks are in `notebooks/`;
   - primary outputs are in `results/`;
   - report materials are in `docs/report-materials/`;
-  - hybrid notebooks/results are in `archive/exploratory-hybrid/`.
+  - hybrid notebooks/results remain in the main `notebooks/` and `results/`
+    folders instead of a separate archive.
 - Replaced the old README with a source-of-truth project overview.
 - Added `docs/validated-results.md` with claims supported by the stored primary
   results and explicit limitations.
@@ -110,6 +117,7 @@ choose a new learning rate or training configuration.
 - Corrected plot: `results/06-results-analysis/learning_curves.png`
 - Evidence-based interpretation: `docs/validated-results.md`
 
-The original notebook 06 and its superseded plot are preserved under
-`archive/legacy-analysis/` for traceability and should not be used for final
-reporting.
+The original notebook 06 and earlier superseded analysis artifacts are retained
+only for traceability and should not be used for final reporting. The current
+source of truth remains the corrected outputs in `results/06-results-analysis/`
+and the interpretation in `docs/validated-results.md`.

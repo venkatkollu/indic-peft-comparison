@@ -1,8 +1,10 @@
 ================================================================
 CAPSTONE PROJECT REPORT — TEMPLATE
 
-> **Status notice (2026-08-18):** This template includes stale result examples.
-> Use `../validated-results.md` as the source for current primary-study facts.
+> **Status notice (2026-08-24):** This template is a historical drafting scaffold
+> only. It contains stale result examples and outdated repo references. Use
+> `../validated-results.md` as the current source of primary-study facts and the
+> project layout in the repository root as the current file structure.
 ================================================================
 
 Title Page
