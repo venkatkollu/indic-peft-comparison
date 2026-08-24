@@ -11,6 +11,8 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+~$*.docx
+.~lock.*
 
 # IDE
 .vscode/

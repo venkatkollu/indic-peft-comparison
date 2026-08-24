@@ -9,3 +9,4 @@ numpy
 matplotlib
 seaborn
 huggingface_hub
+python-docx>=1.2.0
