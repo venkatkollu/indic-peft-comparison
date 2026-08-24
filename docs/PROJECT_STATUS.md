@@ -1,9 +1,9 @@
 # Project status and continuation notes
 
-Last updated: 2026-08-18
+Last updated: 2026-08-24
 
-This document records what has been checked and changed so work can continue
-without repeating the audit.
+This document records the current project state after the final validation audit,
+held-out test evaluation, and hybrid comparison work.
 
 ## Current project scope
 
@@ -15,46 +15,40 @@ infrastructure checks → `04` pooled LR search → `05` 108-run primary sweep �
 `06` corrected analysis → `07` held-out evaluation → `08` hybrid formal study →
 `09` hybrid test evaluation → `10` final comparison.
 
-The hybrid IA³+LoRA work is retained in the main project structure under
+The hybrid IA³+LoRA work remains in the active project tree under
 `notebooks/08-hybrid-formal.ipynb`, `notebooks/09-hybrid-test-evaluation.ipynb`,
-and the corresponding `results/08 — Hybrid IA3+LoRA/` and
-`results/09 — Hybrid test-set eval/` folders. It is not archived separately and
-is treated as a relevant follow-up study rather than a replacement for the
-primary conclusions.
+and `notebooks/10-final-comparison.ipynb`, with the corresponding outputs in
+`results/08 — Hybrid IA3+LoRA/`, `results/09 — Hybrid test-set eval/`, and
+`results/10-final-comparison/`. It is treated as a follow-up study with its own
+held-out test comparison and is not a replacement for the primary validation
+main findings.
 
 ## Work completed
 
-- Audited all project notebooks, report materials, result CSVs, and saved PEFT
-  adapter artifacts.
-- Confirmed the primary result table contains 108 runs and the saved primary
-  sweep contains 108 adapter configurations.
-- Reorganized the repository:
-  - primary notebooks are in `notebooks/`;
-  - primary outputs are in `results/`;
-  - report materials are in `docs/report-materials/`;
-  - hybrid notebooks/results remain in the main `notebooks/` and `results/`
-    folders instead of a separate archive.
-- Replaced the old README with a source-of-truth project overview.
-- Added `docs/validated-results.md` with claims supported by the stored primary
-  results and explicit limitations.
-- Added warnings to older report drafts so stale claims are not reused as final
-  results.
-- Replaced the old notebook 06 analysis with a corrected version.
-- Corrected three-seed intervals using a two-sided t interval with `df=2` and
-  `t*=4.302652729` instead of the old normal multiplier `1.96`.
-- Replaced unsupported crossover claims with descriptive rank-order changes in
-  `results/06-results-analysis/rank_order_changes.csv`.
-- Corrected the collapse rule to include accuracy within `0.001` of the
-  one-class baseline. The corrected count is 24/108 (22.2%): LoRA 8, DoRA 7,
-  IA³ 9.
-- Regenerated the corrected summary tables and learning-curve plot.
-- Added `notebooks/07-test-set-evaluation.ipynb` for held-out evaluation of all
-  108 saved models without retraining.
+- Audited the project notebooks, saved outputs, and documentation structure.
+- Confirmed the maintained primary sweep contains 108 validation-set runs.
+- Reorganized the repository around the active notebook sequence and current
+  result folders.
+- Corrected the README and source-of-truth documentation to separate primary and
+  hybrid findings.
+- Added `docs/validated-results.md` as the current summary for the main study,
+  with explicit interpretation limits and the hybrid follow-up clearly marked as
+  separate.
+- Corrected the validation analysis to use the supported summary and interval
+  logic: two-sided t interval with `df=2` and `t*=4.302652729`.
+- Corrected the collapse rule so 24/108 runs (22.2%) are treated as equivalent
+  near-baseline cases: LoRA 8, DoRA 7, IA³ 9.
+- Regenerated the corrected validation rankings and result summary files.
+- Executed the final comparison workflow in `notebooks/10-final-comparison.ipynb`.
+- Verified the final test-set head-to-head result: hybrid wins 8/12 cells (67%).
+- Committed and pushed the final documentation and results update to GitHub.
 
-## Current primary findings
+## Current findings
 
-The stored primary results are validation-set results, not final held-out test
-results. Mean macro-F1 winners are:
+### Primary validation-set results
+
+These are the validated results from the main sweep on the validation split. They
+are not final held-out test-set results.
 
 | Budget | Hindi | Telugu |
 |---:|---|---|
@@ -65,59 +59,47 @@ results. Mean macro-F1 winners are:
 | 2,000 | IA³ | IA³ |
 | 20,000 | IA³ | LoRA |
 
-Therefore, do not claim that IA³ wins every budget from 500 onward in both
-languages, and do not claim 100% cross-language agreement.
+This supports the claim that IA³ is the strongest mean-performing method at the
+intermediate 500–2,000 budgets in both languages and the dominant Hindi method
+from 500 onward, but it does not justify claiming IA³ wins every budget from 500
+onward in both languages.
 
-## Important limitations still open
+### Hybrid held-out test comparison
 
-- Notebook 04 selects learning rates using validation data, and notebook 05
-  reports validation performance on that same split.
-- The held-out test split has not yet been evaluated.
-- Notebook 03 still refers to `train_392702.parquet`, which notebook 02 does
-  not create; fix or mark that stale check before final submission.
-- Training epochs vary by budget, so budget and optimizer-update exposure are
-  not completely isolated.
-- The primary memory field measures a no-gradient forward pass, not true peak
-  training memory.
-- The raw/processed datasets are not committed to this repository.
+The hybrid IA³+LoRA method was evaluated against the best primary method for
+each budget-language cell on the held-out test split.
 
-## Next action: run notebook 07
+Verified result:
 
-Recommended environment: Kaggle, because the original data and model setup are
-Kaggle-based. Attach the saved outputs of notebooks 02 and 05 as notebook
-inputs. In notebook 07, the Kaggle paths normally have this form:
+- Hybrid wins 8/12 cells
+- Win rate: 67%
+- Wins occur at budgets 100, 500, 2,000, and 20,000 in both languages
+- Losses occur at budgets 50 and 1,000 in both languages
 
-```python
-DATA_ROOT = Path(
-    "/kaggle/input/notebooks/venkatkolluu/02-data-preprocessingv2/data/processed"
-)
-PRIMARY_RESULTS_ROOT = Path(
-    "/kaggle/input/notebooks/venkatkolluu/05-full-experiment-sweep"
-)
-```
+This is a separate result from the primary validation study and should not be
+mixed into the main validation summary table.
 
-Confirm the actual mounted paths first:
+## Important limitations and caveats
 
-```python
-!find /kaggle/input -type f \( -name "test.parquet" -o -name "experiment_results.csv" \)
-```
+- The primary sweep uses validation data for learning-rate selection and is
+  therefore validation-set analysis, not final held-out evaluation.
+- The hybrid method uses a dual-LR setup that was not optimized under the same
+  LR-search protocol as the primary methods.
+- `summary_with_ci.csv` reports seed variability via a two-sided t interval, not
+  a pairwise significance result.
+- Training budgets vary in epoch schedule, so budget and optimizer-update exposure
+  are not fully isolated.
+- The raw or processed datasets are not stored in this repository as a full data
+  asset; the project depends on the preserved saved experiment outputs and
+  notebook-generated artifacts.
 
-`PRIMARY_RESULTS_ROOT` must directly contain `experiment_results.csv` and
-`adapters/`. Notebook 07 evaluates the saved adapters on Hindi/Telugu
-`test.parquet` and writes `test_results.csv`, `test_summary_with_ci.csv`, and
-`test_ranking_table.csv` to its output directory. Do not use test results to
-choose a new learning rate or training configuration.
+## Current source-of-truth files
 
-## Files to use as the current source of truth
+- Primary validation summary: `results/06-results-analysis/summary_with_ci.csv`
+- Primary rankings: `results/06-results-analysis/ranking_table.csv`
+- Final hybrid comparison: `results/10-final-comparison/hybrid_vs_best_primary.csv`
+- Project overview: `README.md`
+- Supported interpretation notes: `docs/validated-results.md`
 
-- Primary raw runs: `results/05-full-experiment-sweep/experiment_results.csv`
-- Corrected validation summary: `results/06-results-analysis/summary_with_ci.csv`
-- Corrected validation rankings: `results/06-results-analysis/ranking_table.csv`
-- Corrected rank changes: `results/06-results-analysis/rank_order_changes.csv`
-- Corrected plot: `results/06-results-analysis/learning_curves.png`
-- Evidence-based interpretation: `docs/validated-results.md`
-
-The original notebook 06 and earlier superseded analysis artifacts are retained
-only for traceability and should not be used for final reporting. The current
-source of truth remains the corrected outputs in `results/06-results-analysis/`
-and the interpretation in `docs/validated-results.md`.
+The current source of truth is the corrected validation outputs plus the final
+hybrid test comparison, and the project should be reported using that split.
