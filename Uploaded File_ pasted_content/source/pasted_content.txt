@@ -1,0 +1,812 @@
+I need you to completely revise and expand my university capstone
+project report into a professional 50–60 page research-oriented
+capstone report.
+
+PROJECT REPOSITORY:
+https://github.com/OCTANET_JUNE/indic-peft-comparison
+
+PROJECT TITLE:
+"Does PEFT Method Ranking Hold Across Script Families?
+A Data-Efficiency Study on Low-Resource Indic Languages"
+
+============================================================
+PRIMARY INSTRUCTION
+============================================================
+
+DO NOT START WRITING THE REPORT IMMEDIATELY.
+
+First, perform a COMPLETE AUDIT of the GitHub repository.
+
+Read and understand the entire repository, including:
+
+- README files
+- Python scripts
+- Jupyter notebooks
+- Markdown documentation
+- methodology notes
+- CSV files
+- JSON files
+- experiment configurations
+- result files
+- generated figures
+- analysis scripts
+- logs
+- requirements/environment files
+- saved experiment outputs
+- reproducibility artifacts
+- any existing report/documentation
+
+Treat the repository as the PRIMARY SOURCE OF TRUTH.
+
+I also have an existing ~15-page capstone report that should be used
+as the starting point. Preserve valid content from it, but verify
+important claims and numerical results against the repository.
+
+DO NOT invent:
+- experiments
+- results
+- datasets
+- statistics
+- figures
+- citations
+- implementation details
+- performance numbers
+- hardware specifications
+- research findings
+
+If something is not supported by the repository, do not fabricate it.
+
+============================================================
+PROJECT CONTEXT
+============================================================
+
+The project studies parameter-efficient fine-tuning methods for
+low-resource Indic-language NLP.
+
+Primary comparison:
+
+1. LoRA
+2. DoRA
+3. IA3
+
+Base model:
+
+XLM-RoBERTa-base
+
+Dataset:
+
+IndicXNLI
+
+Languages:
+
+Hindi
+Telugu
+
+Primary task:
+
+Three-class Natural Language Inference classification
+
+Primary metric:
+
+Macro-F1
+
+Experimental design:
+
+3 PEFT methods
+× 2 languages
+× 6 training budgets
+× 3 random seeds
+= 108 primary experimental runs
+
+Training budgets:
+
+50
+100
+500
+1,000
+2,000
+20,000 examples
+
+Random seeds:
+
+42
+123
+456
+
+The existing validated report indicates:
+
+- DoRA leads at 50 examples in both languages
+- At intermediate budgets IA3 generally leads
+- At 20,000 examples IA3 leads Hindi
+- At 20,000 examples LoRA leads Telugu
+- Therefore PEFT ranking is budget-dependent
+- Full cross-script ranking invariance is not supported
+- A separate IA3+LoRA hybrid held-out experiment exists
+- The hybrid reportedly wins 8/12 comparison cells
+
+VERIFY ALL OF THESE AGAINST THE REPOSITORY BEFORE USING THEM.
+
+The hybrid experiment MUST remain clearly separated from the primary
+108-run validation experiment because its protocol/tuning differs.
+
+============================================================
+CURRENT REPORT
+============================================================
+
+I already have an existing report of approximately 15 pages.
+
+Do NOT simply rewrite the same 15 pages with larger spacing.
+
+Instead:
+
+USE THE CURRENT REPORT AS THE BASE
++
+READ THE ENTIRE REPOSITORY
++
+ADD REAL TECHNICAL AND ANALYTICAL DEPTH
+=
+50–60 PAGE FINAL CAPSTONE REPORT
+
+The additional pages must come from genuine academic content.
+
+============================================================
+TARGET REPORT STRUCTURE
+============================================================
+
+Create the following structure.
+
+FRONT MATTER
+
+- Title Page
+- Certificate
+- Declaration
+- Acknowledgement
+- Abstract
+- Table of Contents
+- List of Figures
+- List of Tables
+- List of Abbreviations
+
+------------------------------------------------------------
+CHAPTER 1 — INTRODUCTION
+------------------------------------------------------------
+
+1.1 Background
+
+1.2 Natural Language Processing and Transfer Learning
+
+1.3 Low-Resource NLP
+
+1.4 Parameter-Efficient Fine-Tuning
+
+1.5 Indic Languages and Script Diversity
+
+1.6 Hindi and Telugu
+
+1.7 Problem Statement
+
+1.8 Motivation
+
+1.9 Research Gap
+
+1.10 Research Questions
+
+RQ1:
+Does the ranking of LoRA, DoRA, and IA3 change as the
+training-data budget changes?
+
+RQ2:
+Is the observed ranking consistent for Hindi and Telugu?
+
+1.11 Objectives
+
+1.12 Scope
+
+1.13 Contributions
+
+1.14 Limitations
+
+1.15 Organization of the Report
+
+
+------------------------------------------------------------
+CHAPTER 2 — LITERATURE REVIEW
+------------------------------------------------------------
+
+2.1 Transfer Learning in NLP
+
+2.2 Transformer-Based Language Models
+
+2.3 Multilingual Language Models
+
+2.4 XLM-RoBERTa
+
+2.5 Parameter-Efficient Fine-Tuning
+
+2.6 LoRA
+
+Explain:
+- motivation
+- low-rank adaptation
+- mathematical intuition
+- trainable parameters
+- advantages
+- limitations
+
+2.7 DoRA
+
+Explain:
+- motivation
+- magnitude/direction decomposition
+- relationship with LoRA
+- expected advantages
+- limitations
+
+2.8 IA3
+
+Explain:
+- learned scaling vectors
+- transformer adaptation
+- parameter efficiency
+- advantages
+- limitations
+
+2.9 PEFT for Low-Resource Learning
+
+2.10 IndicXNLI
+
+2.11 Hindi NLP
+
+2.12 Telugu NLP
+
+2.13 Existing PEFT Comparison Studies
+
+2.14 Research Gap
+
+2.15 Summary
+
+
+------------------------------------------------------------
+CHAPTER 3 — SYSTEM DESIGN AND METHODOLOGY
+------------------------------------------------------------
+
+This should be one of the largest chapters.
+
+3.1 Research Design
+
+3.2 Overall Experimental Architecture
+
+3.3 Experimental Variables
+
+3.4 Dataset
+
+3.5 IndicXNLI Dataset Structure
+
+3.6 Language Selection
+
+3.7 Data Preprocessing
+
+3.8 Tokenization
+
+3.9 Dataset Splitting
+
+3.10 Base Model — XLM-RoBERTa-base
+
+3.11 Sequence Classification Architecture
+
+3.12 LoRA Configuration
+
+3.13 DoRA Configuration
+
+3.14 IA3 Configuration
+
+3.15 Classification Head Configuration
+
+3.16 Training Budgets
+
+3.17 Random Seeds
+
+3.18 Hyperparameter / Learning-Rate Search
+
+3.19 Training Procedure
+
+3.20 Evaluation Metrics
+
+3.21 Macro-F1
+
+3.22 Confidence Interval Calculation
+
+3.23 Near-Baseline / Collapsed Run Detection
+
+3.24 Experimental Pipeline
+
+3.25 Software Stack
+
+3.26 Compute Environment
+
+3.27 Logging and Experiment Tracking
+
+3.28 Reproducibility
+
+3.29 Engineering Issues
+
+3.30 Bugs and Fixes
+
+3.31 Classifier-Head Issue
+
+3.32 Experimental Design Limitations
+
+3.33 Chapter Summary
+
+
+IMPORTANT ENGINEERING DETAIL:
+
+The existing report identifies the classification-head safeguard:
+
+modules_to_save=['classifier']
+
+Explain why a randomly initialized classification head needs to be
+properly handled in a PEFT sequence-classification experiment.
+
+Verify the exact implementation from the repository.
+
+
+------------------------------------------------------------
+CHAPTER 4 — COMPUTATIONAL COST ANALYSIS
+------------------------------------------------------------
+
+4.1 Compute Environment
+
+4.2 Computational Requirements
+
+4.3 Trainable Parameter Count
+
+4.4 Memory Usage
+
+4.5 Training Time
+
+4.6 LoRA Computational Cost
+
+4.7 DoRA Computational Cost
+
+4.8 IA3 Computational Cost
+
+4.9 Parameter Efficiency
+
+4.10 Training-Time Efficiency
+
+4.11 Memory Efficiency
+
+4.12 Performance vs Computational Cost
+
+4.13 Practical Trade-offs
+
+Use ONLY actual measurements from the repository.
+
+
+------------------------------------------------------------
+CHAPTER 5 — RESULTS AND DISCUSSION
+------------------------------------------------------------
+
+This should be the largest chapter.
+
+5.1 Results Overview
+
+5.2 Primary Validation Results
+
+5.3 Hindi Results
+
+5.4 Telugu Results
+
+5.5 Results at 50 Examples
+
+5.6 Results at 100 Examples
+
+5.7 Results at 500 Examples
+
+5.8 Results at 1,000 Examples
+
+5.9 Results at 2,000 Examples
+
+5.10 Results at 20,000 Examples
+
+5.11 Learning-Curve Analysis
+
+5.12 PEFT Ranking Across Training Budgets
+
+5.13 Cross-Language Comparison
+
+5.14 Seed-Level Variability
+
+5.15 Confidence Intervals
+
+5.16 Near-Baseline Runs
+
+5.17 LoRA vs DoRA
+
+5.18 IA3 Behaviour Across Data Budgets
+
+5.19 Compute Efficiency vs Accuracy
+
+5.20 Held-Out IA3+LoRA Hybrid Experiment
+
+5.21 Hybrid Results by Language
+
+5.22 Hybrid Win/Loss Analysis
+
+5.23 Comparison With Existing Research
+
+5.24 Interpretation of RQ1
+
+5.25 Interpretation of RQ2
+
+5.26 Practical Implications
+
+5.27 Threats to Validity
+
+5.28 Limitations
+
+5.29 Chapter Summary
+
+
+VERY IMPORTANT:
+
+Do not claim statistical significance unless the repository actually
+contains an appropriate statistical test.
+
+Three-seed confidence intervals describe seed variability.
+
+Do not convert descriptive rankings into claims of universal
+superiority.
+
+
+------------------------------------------------------------
+CHAPTER 6 — CONCLUSION AND FUTURE WORK
+------------------------------------------------------------
+
+6.1 Summary of the Study
+
+6.2 Major Findings
+
+6.3 Answer to RQ1
+
+6.4 Answer to RQ2
+
+6.5 Contributions
+
+6.6 Practical Recommendations
+
+6.7 Limitations
+
+6.8 Future Work
+
+Potential future directions:
+
+- additional Indic languages
+- additional scripts
+- larger training datasets
+- additional NLP tasks
+- larger multilingual encoders
+- improved validation/test protocols
+- more random seeds
+- additional PEFT methods
+- optimizer/training-schedule isolation
+- systematic hybrid PEFT studies
+
+Clearly label these as FUTURE WORK, not completed experiments.
+
+
+------------------------------------------------------------
+REFERENCES
+------------------------------------------------------------
+
+Use IEEE-style academic references.
+
+Use verified references only.
+
+Do not invent references.
+
+Preserve the existing verified references and add new sources only
+if you actually verify them.
+
+
+------------------------------------------------------------
+APPENDICES
+------------------------------------------------------------
+
+Appendix A — Complete Primary Experimental Results
+
+Appendix B — Experimental Configuration
+
+Appendix C — Hyperparameter Search
+
+Appendix D — Near-Baseline Runs
+
+Appendix E — Hybrid Experiment Results
+
+Appendix F — Reproducibility Artifact Index
+
+Appendix G — Additional Tables
+
+Appendix H — Additional Figures
+
+Appendix I — Important Code/Configuration Snippets
+
+The complete 108-run table should preferably be placed in the
+appendix rather than occupying the main discussion.
+
+
+============================================================
+FIGURES
+============================================================
+
+Inspect the repository for existing figures first.
+
+Reuse actual generated figures wherever possible.
+
+If the raw data supports it, create professional additional figures:
+
+1. Overall experimental pipeline
+2. PEFT architecture comparison
+3. Dataset/training pipeline
+4. Hindi learning curves
+5. Telugu learning curves
+6. Macro-F1 vs training budget
+7. PEFT ranking vs budget
+8. Hindi vs Telugu comparison
+9. Trainable parameter comparison
+10. Training time comparison
+11. Memory usage comparison
+12. Near-baseline run distribution
+13. Hybrid IA3+LoRA comparison
+14. Compute efficiency vs performance
+
+Every figure must:
+- have a number
+- have an academic caption
+- be referenced in the text
+- be based on actual data
+
+Do not create decorative figures simply to increase page count.
+
+
+============================================================
+TABLES
+============================================================
+
+Create professionally formatted tables including:
+
+Table 1 — Dataset Statistics
+
+Table 2 — Experimental Variables
+
+Table 3 — PEFT Configurations
+
+Table 4 — Training Budgets
+
+Table 5 — Hyperparameters
+
+Table 6 — Primary Validation Results
+
+Table 7 — Ranking by Language and Budget
+
+Table 8 — Compute Efficiency
+
+Table 9 — Near-Baseline Runs
+
+Table 10 — Hybrid Follow-Up
+
+Table 11 — Research Question Findings
+
+Full 108-run results should go into the appendix.
+
+
+============================================================
+ACADEMIC WRITING
+============================================================
+
+Write like a genuine university research/capstone report.
+
+Style:
+
+- formal
+- technical
+- objective
+- precise
+- evidence-based
+- coherent
+- readable
+
+Avoid:
+
+- marketing language
+- exaggerated claims
+- repetitive filler
+- generic AI-generated statements
+- unsupported claims
+- fake statistics
+- fake citations
+- repeated conclusions
+
+Explain the WHY and HOW behind the methodology, not just WHAT was done.
+
+
+============================================================
+FORMATTING
+============================================================
+
+Target final length:
+
+50–60 pages.
+
+Page:
+
+A4
+
+Margins:
+
+Left: 1.25 inch
+Right: 1 inch
+Top: 1 inch
+Bottom: 1 inch
+
+Body:
+
+Times New Roman
+12 pt
+
+Line spacing:
+
+1.5
+
+Alignment:
+
+Justified
+
+Paragraph indentation:
+
+0.3–0.5 inch
+
+Chapter heading:
+
+16 pt
+Bold
+Uppercase
+
+Section heading:
+
+14 pt
+Bold
+
+Subsection:
+
+12 pt
+Bold
+
+Figure captions:
+
+10–11 pt
+
+Table captions:
+
+10–11 pt
+
+Table content:
+
+9–10 pt when necessary
+
+References:
+
+10–11 pt
+Single spacing
+
+Page numbers:
+
+Bottom-center or bottom-right.
+
+Maintain consistent headers/footers.
+
+Do NOT artificially increase page count using:
+- oversized fonts
+- huge spacing
+- blank pages
+- oversized headings
+- unnecessary tables
+- repeated paragraphs.
+
+
+============================================================
+CRITICAL DATA INTEGRITY RULE
+============================================================
+
+Before finalizing, independently verify:
+
+- 108 primary runs
+- 3 methods
+- 2 languages
+- 6 budgets
+- 3 seeds
+- Macro-F1 values
+- rankings
+- confidence intervals
+- compute measurements
+- near-baseline counts
+- hybrid results
+- repository paths
+- configuration values
+
+If the current report conflicts with repository data:
+
+1. identify the conflict
+2. inspect the relevant source
+3. determine which source is authoritative
+4. correct the report
+5. record the correction in a CHANGELOG
+
+Do not silently change results.
+
+
+============================================================
+FINAL QUALITY CHECK
+============================================================
+
+Before delivering the final report:
+
+- Read the complete generated document.
+- Check grammar.
+- Check technical consistency.
+- Check chapter numbering.
+- Check table numbering.
+- Check figure numbering.
+- Check references.
+- Check citations.
+- Check cross-references.
+- Check page numbers.
+- Check all numerical results.
+- Check that Hindi/Telugu results are not mixed.
+- Check LoRA/DoRA/IA3 naming consistency.
+- Check that primary and hybrid experiments remain separate.
+- Check that limitations are honestly stated.
+- Check that no fabricated information exists.
+- Check that the report genuinely contains approximately 50–60 pages.
+
+
+============================================================
+DELIVERABLES
+============================================================
+
+Produce:
+
+1. FINAL 50–60 PAGE CAPSTONE REPORT
+2. SOURCE FILE
+3. ALL GENERATED/UPDATED FIGURES
+4. FINAL TABLES
+5. REFERENCES
+6. CHANGELOG
+
+The final report should look like a serious university capstone/research
+report based on a real reproducible experiment.
+
+DO NOT make it look like a 15-page report stretched to 60 pages.
+
+The goal is:
+
+CURRENT 15-PAGE REPORT
++
+COMPLETE REPOSITORY ANALYSIS
++
+DEEP METHODOLOGY
++
+DEEP RESULTS ANALYSIS
++
+LITERATURE REVIEW
++
+FIGURES
++
+TABLES
++
+APPENDICES
++
+REPRODUCIBILITY DOCUMENTATION
+=
+PROFESSIONAL 50–60 PAGE CAPSTONE REPORT.

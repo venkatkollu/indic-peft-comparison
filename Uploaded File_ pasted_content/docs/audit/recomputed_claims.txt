@@ -1,0 +1,171 @@
+PRIMARY ASSERTIONS: PASS
+
+PRIMARY WINNERS BY MEAN MACRO-F1
+
+language  budget method  macro_f1
+      hi      50   dora  0.221293
+      hi     100   dora  0.199331
+      hi     500    ia3  0.379855
+      hi    1000    ia3  0.395131
+      hi    2000    ia3  0.491472
+      hi   20000    ia3  0.668206
+      te      50   dora  0.205323
+      te     100    ia3  0.206277
+      te     500    ia3  0.351163
+      te    1000    ia3  0.267796
+      te    2000    ia3  0.394947
+      te   20000   lora  0.626213
+
+COLLAPSE: 24/108 = 22.2222%
+
+method
+dora    7
+ia3     9
+lora    8
+
+PRIMARY SUMMARY WITH RECOMPUTED CI
+
+method language  budget     mean      std  count     ci95
+  dora       hi      50 0.221293 0.044521      3 0.110595
+  dora       hi     100 0.199331 0.056576      3 0.140543
+  dora       hi     500 0.330174 0.047191      3 0.117230
+  dora       hi    1000 0.202535 0.038021      3 0.094449
+  dora       hi    2000 0.442721 0.062278      3 0.154707
+  dora       hi   20000 0.665788 0.005730      3 0.014235
+  dora       te      50 0.205323 0.026882      3 0.066778
+  dora       te     100 0.204420 0.065390      3 0.162438
+  dora       te     500 0.277677 0.055358      3 0.137517
+  dora       te    1000 0.205164 0.065612      3 0.162989
+  dora       te    2000 0.315463 0.063399      3 0.157493
+  dora       te   20000 0.622666 0.008393      3 0.020850
+   ia3       hi      50 0.192181 0.036806      3 0.091432
+   ia3       hi     100 0.175501 0.015301      3 0.038010
+   ia3       hi     500 0.379855 0.009495      3 0.023587
+   ia3       hi    1000 0.395131 0.063442      3 0.157598
+   ia3       hi    2000 0.491472 0.070276      3 0.174575
+   ia3       hi   20000 0.668206 0.012050      3 0.029933
+   ia3       te      50 0.166667 0.000000      3 0.000000
+   ia3       te     100 0.206277 0.068606      3 0.170427
+   ia3       te     500 0.351163 0.042809      3 0.106342
+   ia3       te    1000 0.267796 0.090018      3 0.223618
+   ia3       te    2000 0.394947 0.061737      3 0.153362
+   ia3       te   20000 0.616463 0.010712      3 0.026609
+  lora       hi      50 0.219057 0.041508      3 0.103111
+  lora       hi     100 0.199152 0.056265      3 0.139770
+  lora       hi     500 0.335923 0.052716      3 0.130955
+  lora       hi    1000 0.203533 0.036171      3 0.089853
+  lora       hi    2000 0.485044 0.026949      3 0.066945
+  lora       hi   20000 0.664053 0.012300      3 0.030556
+  lora       te      50 0.204097 0.025454      3 0.063232
+  lora       te     100 0.203810 0.064334      3 0.159813
+  lora       te     500 0.287247 0.064137      3 0.159325
+  lora       te    1000 0.203917 0.062737      3 0.155848
+  lora       te    2000 0.240430 0.087038      3 0.216215
+  lora       te   20000 0.626213 0.011922      3 0.029615
+
+HYBRID: 8/12 = 66.6667%
+
+language  budget best_primary_method  best_primary  hybrid_ia3_lora  hybrid_delta  hybrid_wins
+      hi      50                dora      0.221088         0.166667       -0.0544        False
+      hi     100                lora      0.198668         0.275796        0.0771         True
+      hi     500                 ia3      0.375648         0.436077        0.0604         True
+      hi    1000                 ia3      0.401173         0.349152       -0.0520        False
+      hi    2000                 ia3      0.490060         0.542474        0.0524         True
+      hi   20000                 ia3      0.669971         0.691303        0.0213         True
+      te      50                lora      0.202623         0.166667       -0.0360        False
+      te     100                lora      0.203250         0.275417        0.0722         True
+      te     500                 ia3      0.353883         0.406043        0.0522         True
+      te    1000                 ia3      0.263489         0.257716       -0.0058        False
+      te    2000                 ia3      0.401012         0.475242        0.0742         True
+      te   20000                lora      0.627976         0.653940        0.0260         True
+
+
+results/06-results-analysis/summary_with_ci.csv shape=(36, 11)
+method language  budget  f1_mean   f1_std  acc_mean  acc_std  n  f1_ci95  acc_ci95                                  ci_method
+  dora       hi      50 0.221293 0.044521  0.333601 0.005852  3 0.110595  0.014537 two-sided t interval; df=2; t*=4.302652729
+  dora       hi     100 0.199331 0.056576  0.335743 0.004174  3 0.140543  0.010368 two-sided t interval; df=2; t*=4.302652729
+  dora       hi     500 0.330174 0.047191  0.373628 0.012984  3 0.117230  0.032254 two-sided t interval; df=2; t*=4.302652729
+  dora       hi    1000 0.202535 0.038021  0.336278 0.003796  3 0.094449  0.009429 two-sided t interval; df=2; t*=4.302652729
+  dora       hi    2000 0.442721 0.062278  0.477644 0.031153  3 0.154707  0.077389 two-sided t interval; df=2; t*=4.302652729
+  dora       hi   20000 0.665788 0.005730  0.665060 0.005665  3 0.014235  0.014073 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi      50 0.192181 0.036806  0.332530 0.002125  3 0.091432  0.005280 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi     100 0.175501 0.015301  0.333735 0.000696  3 0.038010  0.001728 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi     500 0.379855 0.009495  0.414056 0.002811  3 0.023587  0.006983 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi    1000 0.395131 0.063442  0.443373 0.024760  3 0.157598  0.061506 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi    2000 0.491472 0.070276  0.516600 0.047344  3 0.174575  0.117609 two-sided t interval; df=2; t*=4.302652729
+   ia3       hi   20000 0.668206 0.012050  0.666265 0.012293  3 0.029933  0.030538 two-sided t interval; df=2; t*=4.302652729
+  lora       hi      50 0.219057 0.041508  0.333200 0.005101  3 0.103111  0.012673 two-sided t interval; df=2; t*=4.302652729
+  lora       hi     100 0.199152 0.056265  0.335475 0.003710  3 0.139770  0.009216 two-sided t interval; df=2; t*=4.302652729
+  lora       hi     500 0.335923 0.052716  0.374833 0.012606  3 0.130955  0.031315 two-sided t interval; df=2; t*=4.302652729
+  lora       hi    1000 0.203533 0.036171  0.336412 0.004294  3 0.089853  0.010666 two-sided t interval; df=2; t*=4.302652729
+  lora       hi    2000 0.485044 0.026949  0.491566 0.019809  3 0.066945  0.049209 two-sided t interval; df=2; t*=4.302652729
+  lora       hi   20000 0.664053 0.012300  0.663052 0.012655  3 0.030556  0.031437 two-sided t interval; df=2; t*=4.302652729
+  dora       te      50 0.205323 0.026882  0.334940 0.008944  3 0.066778  0.022219 two-sided t interval; df=2; t*=4.302652729
+  dora       te     100 0.204420 0.065390  0.338956 0.009739  3 0.162438  0.024192 two-sided t interval; df=2; t*=4.302652729
+  dora       te     500 0.277677 0.055358  0.357831 0.011887  3 0.137517  0.029528 two-sided t interval; df=2; t*=4.302652729
+  dora       te    1000 0.205164 0.065612  0.339090 0.010674  3 0.162989  0.026515 two-sided t interval; df=2; t*=4.302652729
+  dora       te    2000 0.315463 0.063399  0.371218 0.016740  3 0.157493  0.041584 two-sided t interval; df=2; t*=4.302652729
+  dora       te   20000 0.622666 0.008393  0.623293 0.007329  3 0.020850  0.018205 two-sided t interval; df=2; t*=4.302652729
+   ia3       te      50 0.166667 0.000000  0.333333 0.000000  3 0.000000  0.000000 two-sided t interval; df=2; t*=4.302652729
+   ia3       te     100 0.206277 0.068606  0.344980 0.020173  3 0.170427  0.050112 two-sided t interval; df=2; t*=4.302652729
+   ia3       te     500 0.351163 0.042809  0.396653 0.016146  3 0.106342  0.040110 two-sided t interval; df=2; t*=4.302652729
+   ia3       te    1000 0.267796 0.090018  0.373494 0.039364  3 0.223618  0.097785 two-sided t interval; df=2; t*=4.302652729
+   ia3       te    2000 0.394947 0.061737  0.446721 0.020281  3 0.153362  0.050382 two-sided t interval; df=2; t*=4.302652729
+   ia3       te   20000 0.616463 0.010712  0.616600 0.008654  3 0.026609  0.021498 two-sided t interval; df=2; t*=4.302652729
+  lora       te      50 0.204097 0.025454  0.334003 0.011261  3 0.063232  0.027975 two-sided t interval; df=2; t*=4.302652729
+  lora       te     100 0.203810 0.064334  0.338152 0.008347  3 0.159813  0.020736 two-sided t interval; df=2; t*=4.302652729
+  lora       te     500 0.287247 0.064137  0.358501 0.011247  3 0.159325  0.027940 two-sided t interval; df=2; t*=4.302652729
+  lora       te    1000 0.203917 0.062737  0.337751 0.008357  3 0.155848  0.020761 two-sided t interval; df=2; t*=4.302652729
+  lora       te    2000 0.240430 0.087038  0.356760 0.031557  3 0.216215  0.078393 two-sided t interval; df=2; t*=4.302652729
+  lora       te   20000 0.626213 0.011922  0.626372 0.013102  3 0.029615  0.032548 two-sided t interval; df=2; t*=4.302652729
+
+
+results/06-results-analysis/ranking_table.csv shape=(12, 6)
+language  budget     lora     dora      ia3 highest_mean_method
+      hi      50 0.219057 0.221293 0.192181                dora
+      hi     100 0.199152 0.199331 0.175501                dora
+      hi     500 0.335923 0.330174 0.379855                 ia3
+      hi    1000 0.203533 0.202535 0.395131                 ia3
+      hi    2000 0.485044 0.442721 0.491472                 ia3
+      hi   20000 0.664053 0.665788 0.668206                 ia3
+      te      50 0.204097 0.205323 0.166667                dora
+      te     100 0.203810 0.204420 0.206277                 ia3
+      te     500 0.287247 0.277677 0.351163                 ia3
+      te    1000 0.203917 0.205164 0.267796                 ia3
+      te    2000 0.240430 0.315463 0.394947                 ia3
+      te   20000 0.626213 0.622666 0.616463                lora
+
+
+results/06-results-analysis/compute_efficiency.csv shape=(3, 5)
+method  trainable_params  avg_forward_pass_memory_gb  total_training_time_sec  total_training_time_min
+  dora            906243                    1.172144                  3213.25                53.554167
+   ia3            657411                    1.240206                  2864.74                47.745667
+  lora            887811                    1.156692                  2323.66                38.727667
+
+
+results/06-results-analysis/collapsed_runs.csv shape=(24, 12)
+method language  budget  seed     lr  epochs  accuracy  macro_f1  trainable_params  peak_gpu_memory_gb  training_time_sec                                        adapter_path
+  lora       hi     100    42 0.0001      10  0.333333  0.166667            887811              1.1563               4.80   /kaggle/working/adapters/lora/hi/budget100_seed42
+  lora       hi     100   123 0.0001      10  0.333333  0.166667            887811              1.1578               5.01  /kaggle/working/adapters/lora/hi/budget100_seed123
+  lora       hi    1000   123 0.0001       5  0.333735  0.167519            887811              1.1571              23.87 /kaggle/working/adapters/lora/hi/budget1000_seed123
+  lora       hi    1000   456 0.0001       5  0.334137  0.239858            887811              1.1578              23.81 /kaggle/working/adapters/lora/hi/budget1000_seed456
+  lora       te     100    42 0.0001      10  0.333333  0.166667            887811              1.1578               5.01   /kaggle/working/adapters/lora/te/budget100_seed42
+  lora       te     100   123 0.0001      10  0.333333  0.166667            887811              1.1571               5.01  /kaggle/working/adapters/lora/te/budget100_seed123
+  lora       te    1000    42 0.0001       5  0.332530  0.168734            887811              1.1571              23.78  /kaggle/working/adapters/lora/te/budget1000_seed42
+  lora       te    1000   123 0.0001       5  0.333333  0.166667            887811              1.1571              23.76 /kaggle/working/adapters/lora/te/budget1000_seed123
+  dora       hi     100    42 0.0001      10  0.333333  0.166667            906243              1.1720               7.00   /kaggle/working/adapters/dora/hi/budget100_seed42
+  dora       hi     100   123 0.0001      10  0.333333  0.166667            906243              1.1720               6.92  /kaggle/working/adapters/dora/hi/budget100_seed123
+  dora       hi    1000   123 0.0001       5  0.333333  0.166667            906243              1.1734              32.91 /kaggle/working/adapters/dora/hi/budget1000_seed123
+  dora       te     100    42 0.0001      10  0.333333  0.166667            906243              1.1720               6.94   /kaggle/working/adapters/dora/te/budget100_seed42
+  dora       te     100   123 0.0001      10  0.333333  0.166667            906243              1.1720               6.90  /kaggle/working/adapters/dora/te/budget100_seed123
+  dora       te    1000    42 0.0001       5  0.332530  0.167903            906243              1.1734              33.01  /kaggle/working/adapters/dora/te/budget1000_seed42
+  dora       te    1000   123 0.0001       5  0.333333  0.166667            906243              1.1734              32.75 /kaggle/working/adapters/dora/te/budget1000_seed123
+   ia3       hi      50   123 0.0050      10  0.334137  0.175502            657411              1.2395               2.98    /kaggle/working/adapters/ia3/hi/budget50_seed123
+   ia3       hi      50   456 0.0050      10  0.333333  0.166667            657411              1.2395               3.04    /kaggle/working/adapters/ia3/hi/budget50_seed456
+   ia3       hi     100    42 0.0050      10  0.333333  0.166667            657411              1.2402               6.01    /kaggle/working/adapters/ia3/hi/budget100_seed42
+   ia3       hi     100   123 0.0050      10  0.333333  0.166667            657411              1.2402               6.19   /kaggle/working/adapters/ia3/hi/budget100_seed123
+   ia3       te      50    42 0.0050      10  0.333333  0.166667            657411              1.2409               2.95     /kaggle/working/adapters/ia3/te/budget50_seed42
+   ia3       te      50   123 0.0050      10  0.333333  0.166667            657411              1.2402               2.98    /kaggle/working/adapters/ia3/te/budget50_seed123
+   ia3       te      50   456 0.0050      10  0.333333  0.166667            657411              1.2402               3.02    /kaggle/working/adapters/ia3/te/budget50_seed456
+   ia3       te     100    42 0.0050      10  0.333333  0.166667            657411              1.2409               6.06    /kaggle/working/adapters/ia3/te/budget100_seed42
+   ia3       te     100   123 0.0050      10  0.333333  0.166667            657411              1.2409               5.96   /kaggle/working/adapters/ia3/te/budget100_seed123
